@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>DanceGRPO: Unleashing GRPO on Visual Generation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">DanceGRPO: Unleashing GRPO on Visual Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">Anonymous authors</a>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent breakthroughs in generative models—particularly diffusion models and rectified flows—have revolutionized visual content creation, yet aligning model outputs with human preferences remains a critical challenge. Existing reinforcement learning (RL)-based methods for visual generation face critical limitations: incompatibility with modern Ordinary
+Differential Equations (ODEs)-based sampling paradigms, instability in large-scale training, and lack of validation for video generation. 
+This paper introduces DanceGRPO, the first framework to adapt Group Relative Policy Optimization (GRPO) to visual generation, unleashing one unified RL algorithm across two generative paradigms (diffusion models and rectified flows), three tasks (text-to-image, text-to-video, image-to-video), four foundation models (Stable Diffusion, HunyuanVideo, FLUX, SkyReel-I2V), and five reward models (image/video aesthetics, text-image alignment, video motion quality, and binary reward). To our knowledge, DanceGRPO is the first RL-based unified framework
+capable of seamless adaptation across diverse generative paradigms, tasks, foundational models, and reward models. DanceGRPO demonstrates consistent and substantial improvements, which outperforms baselines by up to 181% on benchmarks such as HPS-v2.1, CLIP Score, VideoAlign, and GenEval. 
+Notably, DanceGRPO not only can stabilize policy gradient for complex video generation, but also enables generative policy to better capture  denoising trajectories for Best-of-N inference scaling and  learn from sparse binary feedback.
+Our results establish DanceGRPO as a robust and versatile solution for scaling Reinforcement Learning from Human Feedback (RLHF) tasks in visual generation, offering new insights into harmonizing reinforcement learning and visual synthesis. Code will be released.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Core Contributions</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Unified and Pioneering.</strong> To the best of our knowledge, we are the first to extend GRPO to diffusion models and rectified flows, accomplishing multiple visual generation tasks within a unified RL framework. We achieve seamless integration between GRPO and visual generation tasks by carefully refomulate the SDEs, selecting appropriate optimized timesteps, initializing noise and noise scales, and employing efficient sampling strategies.</li>
+            
+            <li><strong>Generalization and Scalability.</strong> To our knowledge, DanceGRPO is the first RL-based unified framework capable of seamless adaptation across diverse generative paradigms, tasks, foundational models, and reward models. Unlike prior RL algorithms—primarily validated on text-to-image diffusion models on small-scale datasets—DanceGRPO demonstrates robust performance on large-scale datasets, showcasing both scalability and practical applicability.</li>
+            
+            <li><strong>High Effectiveness.</strong> Our experiments demonstrate that DanceGRPO achieves significant performance gains, outperforming baselines by up to 181% across multiple academic benchmarks, including HPS-v2.1, CLIP score, VideoAlign, and GenEval, in visual generation tasks. Notably, DanceGRPO also enables models to learn the denoising trajectory in Best-of-N inference scaling. We also make some initial attempts to enable models to capture the distribution of binary (0/1) reward models, showing its ability to capture sparse, thresholding feedback.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results on Stable Diffusion</h2>
+        <div class="content has-text-justified">
+          <p>
+            This table presents the performance of three Stable Diffusion variants: (1)
+            the base model, (2) the model trained with HPS score, and (3) the model optimized with both HPS and CLIP scores.
+            For evaluation, we report HPS-v2.1 and GenEval scores using their official prompts, while CLIP score and Pick-a-Pic
+            metrics are computed on our test set of 1,000 prompts.
+          </p>
+          <img src="./static/images/sd_table.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results on FLUX</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this table, we show the results of FLUX, FLUX trained with HPS score, and FLUX
+trained with both HPS score and CLIP score. 
+          </p>
+          <img src="./static/images/flux_table.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results on HunyuanVideo</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this table, we show the results of HunyuanVideo on Videoalign
+            and VisionReward trained with VideoAlign VQ&MQ.
+            "Baseline" denotes the original results of HunyuanVideo.
+            We use the probability version of VisionReward.
+          </p>
+          <div class="has-text-centered">
+            <img src="./static/images/video_table.jpg" alt="FID" style="max-width: 50%; height: auto; display: inline-block;" class="method-overview-full-img method-overview" draggable="false" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Reward Curves on Text-to-Image Generation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We visualize the reward curves of Stable Diffusion, FLUX.1-dev, and HunyuanVideo-T2I on HPS score from
+left to right. After applying CLIP score, the HPS score decreases, but the generated images become more natural.
+          </p>
+          <img src="./static/images/reward_t2i.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Reward Curves on Video Generation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We visualize the training curves of motion quality&visual quality on HunyuanVideo, motion quality on
+SkyReel-I2V.
+          </p>
+          <img src="./static/images/reward_video.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Binary Reward & Best-of-N Inference Scaling</h2>
+        <div class="content has-text-justified">
+          <p>
+            (a) Thresholding Binary Reward employs a binary mechanism, where rewards are discretized
+via a fixed threshold (values exceeding the threshold receive 1, others 0), specifically designed to evaluate
+generative models’ ability to learn abrupt reward distributions under threshold-based optimization. (b) By training the model on subsets of 16 samples selected from progressively
+larger pools (16, 64, and 256 samples per prompt), we evaluate the impact of sample curation on convergence
+dynamics about the stable diffusion. 
+          </p>
+          <img src="./static/images/binary_bestofn.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+
+
+<!-- Paper Results -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Human Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We show the human evaluation results using FLUX (T2I), HunyuanVideo (T2V), and SkyReel (I2V), respectively. Human artists consistently prefer outputs refined with RLHF.
+          </p>
+          <div class="has-text-centered">
+            <img src="./static/images/human_eval.jpg" alt="FID" style="max-width: 50%; height: auto; display: inline-block;" class="method-overview-full-img method-overview" draggable="false" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+<!-- End paper Reults -->
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visualization on Training Process</h2>
+        <div class="content has-text-justified">
+          <p>
+            We visualize the results by selecting FLUX optimized with the HPS score at iterations 0, 60, 120, 180, 240,
+and 300. The optimized outputs tend to exhibit brighter tones and richer details.
+          </p>
+          <img src="./static/images/training_process.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visualization the Diversity</h2>
+        <div class="content has-text-justified">
+          <p>
+            Visualization of the diversity of the model before and after RLHF. Different seed tends to generate similar
+images after RLHF.
+          </p>
+          <img src="./static/images/diversity.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Influence of CLIP score</h2>
+        <div class="content has-text-justified">
+          <p>
+            This figure demonstrates the impact of CLIP score. The prompt is "A photo of cup". We find the model
+trained solely with HPS-v2.1 rewards tend to produce unnatural ("oily") outputs, while incorporating CLIP scores
+helps maintain more natural image characteristics.
+          </p>
+          <img src="./static/images/hps_clip_vis.jpg" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Reults -->
+
+<!-- Paper Reults -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">More Visualization on Text-to-Image Generation.</h2>
+        <div class="content has-text-justified">
+          <p>
+          </p>
+          <img src="./static/images/upscalemedia-transformed.png" alt="FID" class="method-overview-full-img  method-overview" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper Results -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">More Visualization on Text-to-Video Generation.</h2>
+        <div class="content has-text-justified">
+
+          <!-- First Prompt and Videos -->
+          <div class="content has-text-centered">
+            <p>Prompt: Tobuscus wearing a green shirt, gliding through the sky on magic shoes.</p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_0_before.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_0_after.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <!-- Second Prompt and Videos -->
+          <div class="content has-text-centered">
+            <p>Prompt: realistic scene 4k HD angels in unique armor with gems and gold white on it with huge wings fighting among themselves.</p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_1_before.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_1_after.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <!-- Third Prompt and Videos -->
+          <div class="content has-text-centered">
+            <p>Prompt: the feeling of a mirage in a house, the sunset shining on the lake surface, and the water flowing slowly.</p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_2_before.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_2_after.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <!-- Fourth Prompt and Videos -->
+          <div class="content has-text-centered">
+            <p>Prompt: woman running down a dimly lit corridor.</p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_3_before.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/video_3_after.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper Results -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">More Visualization on Image-to-Video Generation.</h2>
+        <div class="content has-text-justified">
+
+          <!-- First Prompt and Videos -->
+          <div class="content has-text-centered">
+            <p>Prompt: a young black girl walking down a street with alot of huge trees.</p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/i2v_0_before.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/i2v_0_after.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <!-- Second Prompt and Videos -->
+          <div class="content has-text-centered">
+            <p>Prompt: pencil shavings dancing on a black table.</p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/i2v_1_before.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-half has-text-centered">
+              <video controls style="width: 70%; height: auto;">
+                <source src="./static/videos/i2v_1_after.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
